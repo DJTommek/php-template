@@ -1,0 +1,5 @@
+{
+	"require": {
+		"tracy/tracy": "v2.7.3"
+	}
+}
