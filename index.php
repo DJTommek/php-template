@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/config.php';
 		Hello world! <?= Icons::CHECKED; ?>
 	</p>
 	<h2>Module Telegram</h2>
-	<form method="GET" action="modules/sendTelegramMessage.php" target="_blank">
+	<form method="GET" action="modules/telegramSendMessage.php" target="_blank">
 		<label>
 			If you want to send test message, setup 'TELEGRAM_BOT_TOKEN' in data/config.local.php and put some Telegram chat ID here:<br>
 			<input type="text" name="telegramChatId" value="1489532856">
