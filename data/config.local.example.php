@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 // Set database connection settings
 DEFINE('DB_SERVER', 'localhost');
 DEFINE('DB_USER', 'dbuser');

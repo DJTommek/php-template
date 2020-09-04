@@ -1,7 +1,9 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
+
 require_once __DIR__ . '/src/config.php';
+
 // $db = Factory::Database();
+
 ?>
 	<h1>PHP Template</h1>
 	<p>

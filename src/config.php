@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 DEFINE('FOLDER_DATA', __DIR__ . '/../data');
 DEFINE('DATE_FORMAT', 'Y-m-d');
 DEFINE('TIME_FORMAT', 'H:i:s');
