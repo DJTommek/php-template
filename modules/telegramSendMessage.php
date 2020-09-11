@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use unreal4u\TelegramAPI\Telegram\Methods\SendMessage;
 
-require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/bootstrap.php';
 
 if (!isset($_GET['telegramChatId']) || !is_numeric($_GET['telegramChatId'])) {
 	die('Missing or invalid GET parameter "telegramChatId".');

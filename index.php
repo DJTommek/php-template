@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
-
-require_once __DIR__ . '/src/config.php';
+try {
+	require_once __DIR__ . '/src/bootstrap.php';
+} catch (\Exception $exception) {
+	die(sprintf('<h2>Fatal error in bootstrap</h2><p>%s</p>', $exception->getMessage()));
+}
 
 // $db = Factory::Database();
 
