@@ -6,5 +6,9 @@
 		"ext-curl": "*",
 		"ext-mbstring": "*",
 		"ext-pdo": "*"
+	},
+	"scripts": {
+		"pre-install-cmd": "@php ./src/tools/CopyLocalConfig.php",
+		"pre-update-cmd": "@php ./src/tools/CopyLocalConfig.php"
 	}
 }
