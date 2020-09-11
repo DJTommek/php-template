@@ -8,13 +8,15 @@ class DummyLogger
 
 	const NAME_ALL_REQUESTS = 'request';
 
+	const FILE_FORMAT = 'Y-m-d';
+
 	/**
 	 * One JSON per line
 	 *
 	 * @see http://jsonlines.org/
 	 * @see https://github.com/wardi/jsonlines
 	 */
-	const FILE_EXTENSION = 'jsonl'; //
+	const FILE_EXTENSION = 'jsonl';
 	const LINE_SEPARATOR = PHP_EOL;
 
 	public static function log(string $name, $content): void {
@@ -30,13 +32,11 @@ class DummyLogger
 		$writeLogObject = new \stdClass();
 		$now = new \DateTimeImmutable();
 		$writeLogObject->datetime = $now->format(DATE_ISO8601);
-		if (defined('LOG_ID')) {
-			$writeLogObject->log_id = LOG_ID;
-		}
+		$writeLogObject->log_id = LOG_ID;
 		$writeLogObject->name = $name;
 		$writeLogObject->content = $content;
 		file_put_contents(
-			sprintf('%s/%s_%s.%s', $path, $name, $now->format(DATE_FORMAT), self::FILE_EXTENSION),
+			sprintf('%s/%s_%s.%s', $path, $name, $now->format(self::FILE_FORMAT), self::FILE_EXTENSION),
 			json_encode($writeLogObject) . self::LINE_SEPARATOR,
 			FILE_APPEND
 		);
