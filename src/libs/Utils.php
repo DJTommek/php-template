@@ -4,7 +4,8 @@ namespace App;
 
 class Utils
 {
-	static function requestJson(string $url, int $timeout = 10) {
+	static function requestJson(string $url, int $timeout = 10)
+	{
 		return json_decode(self::fileGetContents($url, [
 			CURLOPT_CONNECTTIMEOUT => $timeout,
 			CURLOPT_TIMEOUT => $timeout,
@@ -20,7 +21,8 @@ class Utils
 	 * @throws \Exception if error occured or page returns no content
 	 * @author https://gist.github.com/DJTommek/97048e875a91b67123b0c544bc46c116
 	 */
-	public static function fileGetContents(string $url, array $curlOpts = []) {
+	public static function fileGetContents(string $url, array $curlOpts = [])
+	{
 		$curl = curl_init($url);
 		$curlOpts[CURLOPT_RETURNTRANSFER] = true;
 		$curlOpts[CURLOPT_HEADER] = true;
@@ -49,7 +51,8 @@ class Utils
 	 * @throws \Exception if CURL error occured
 	 * @author https://gist.github.com/DJTommek/79ff19857847360d6c6a45618d7bac1d
 	 */
-	public static function getHeaders(string $url, array $curlOpts = []) {
+	public static function getHeaders(string $url, array $curlOpts = [])
+	{
 		$curl = curl_init($url);
 		$curlOpts[CURLOPT_RETURNTRANSFER] = true;
 		$curlOpts[CURLOPT_HEADER] = true;

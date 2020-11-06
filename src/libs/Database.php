@@ -9,7 +9,8 @@ class Database
 	 */
 	private $db;
 
-	public function __construct($db_server, $db_schema, $db_user, $db_pass, $db_charset = 'utf8mb4') {
+	public function __construct($db_server, $db_schema, $db_user, $db_pass, $db_charset = 'utf8mb4')
+	{
 		$dsn = 'mysql:host=' . $db_server . ';dbname=' . $db_schema . ';charset=' . $db_charset;
 		$this->db = new \PDO($dsn, $db_user, $db_pass);
 		$this->db->setAttribute(\PDO::ATTR_STRINGIFY_FETCHES, false);
@@ -19,7 +20,8 @@ class Database
 		$this->db->query('SET SESSION SQL_MODE=STRICT_ALL_TABLES');
 	}
 
-	public function getLink(): \PDO {
+	public function getLink(): \PDO
+	{
 		return $this->db;
 	}
 
@@ -30,7 +32,8 @@ class Database
 	 * @param mixed ...$params
 	 * @return bool|\PDOStatement
 	 */
-	public function query(string $query, ...$params) {
+	public function query(string $query, ...$params)
+	{
 		$sql = $this->db->prepare($query);
 		$sql->execute($params);
 		return $sql;
@@ -43,7 +46,8 @@ class Database
 	 * @param $params
 	 * @return bool|\PDOStatement
 	 */
-	public function queryArray(string $query, array $params) {
+	public function queryArray(string $query, array $params)
+	{
 		$sql = $this->db->prepare($query);
 		$sql->execute($params);
 		return $sql;

@@ -21,7 +21,8 @@ class DummyLogger
 	const FILE_EXTENSION = 'jsonl';
 	const LINE_SEPARATOR = PHP_EOL;
 
-	public static function log(string $name, $content): void {
+	public static function log(string $name, $content): void
+	{
 		if (!preg_match('/^[a-zA-Z0-9_]{1,30}$/', $name)) {
 			throw new \InvalidArgumentException('Invalid log name.');
 		}
