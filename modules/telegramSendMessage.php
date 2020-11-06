@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Factory;
 use unreal4u\TelegramAPI\Telegram\Methods\SendMessage;
 
 require_once __DIR__ . '/../src/bootstrap.php';

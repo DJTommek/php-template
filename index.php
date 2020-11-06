@@ -10,7 +10,7 @@ try {
 ?>
 	<h1>PHP Template</h1>
 	<p>
-		Hello world! <?= Icons::CHECKED; ?>
+		Hello world! <?= \App\Icons::CHECKED; ?>
 	</p>
 	<h2>Module Telegram</h2>
 	<h3>Send message</h3>

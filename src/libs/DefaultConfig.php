@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace App;
+
 /**
  * Warning: Never update this file directly, always update config.local.php in data folder!
  *

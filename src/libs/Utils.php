@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace App;
+
 class Utils
 {
 	static function requestJson(string $url, int $timeout = 10) {
