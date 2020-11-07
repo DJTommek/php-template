@@ -20,7 +20,7 @@ class MiniCurl
 		CURLOPT_CONNECTTIMEOUT => 10,
 		CURLOPT_TIMEOUT => 10,
 	];
-	/** @var string|false */
+	/** @var string */
 	private $responseRaw;
 	/** @var array<string,string> Array of response headers with lowercased keys */
 	private $responseHeaders = [];
@@ -52,17 +52,20 @@ class MiniCurl
 			throw new \Exception('CURL can\'t be initialited.');
 		}
 		curl_setopt_array($curl, $this->curlOptions);
-		$this->responseRaw = curl_exec($curl);
-		if ($this->responseRaw === false) {
+		/** @var string|false $curlResponse */
+		$curlResponse = curl_exec($curl);
+		if ($curlResponse === false) {
 			$curlErrno = curl_errno($curl);
 			throw new \Exception(sprintf('CURL request error %s: "%s"', $curlErrno, curl_error($curl)));
 		}
-		list($responseHeaders, $this->responseBody) = explode("\r\n\r\n", $this->responseRaw, 2);
-		$this->responseHeaders = $this->parseRawHeaders($responseHeaders);
+		list($responseHeaders, $responseBody) = explode("\r\n\r\n", $curlResponse, 2);
 		$this->wasRequested = true;
+		$this->responseHeaders = $this->parseRawHeaders($responseHeaders);
 		if ($this->getResponseHeader(self::RESPONSE_HEADER_CONTENT_TYPE) === self::CONTENT_TYPE_APPLICATION_JSON) {
-			$this->responseBody = \json_decode($this->responseBody, true, 512, JSON_THROW_ON_ERROR);
+			$responseBody = \json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 		}
+		$this->responseBody = $responseBody;
+		$this->responseRaw = $curlResponse;
 		return $this;
 	}
 
