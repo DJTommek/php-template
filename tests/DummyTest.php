@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class DummyTest extends TestCase
 {
+	/** @var string */
 	private $dummyVariable;
 
 	public function setUp(): void

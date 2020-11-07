@@ -4,7 +4,8 @@ namespace App;
 
 class Factory
 {
-	private static $objects = array();
+	/** @var array<mixed> */
+	private static $objects = [];
 
 	static function Database(): Database
 	{

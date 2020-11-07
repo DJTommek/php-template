@@ -9,7 +9,7 @@ class Database
 	 */
 	private $db;
 
-	public function __construct($db_server, $db_schema, $db_user, $db_pass, $db_charset = 'utf8mb4')
+	public function __construct(string $db_server, string $db_schema, string $db_user, string $db_pass, string $db_charset = 'utf8mb4')
 	{
 		$dsn = 'mysql:host=' . $db_server . ';dbname=' . $db_schema . ';charset=' . $db_charset;
 		$this->db = new \PDO($dsn, $db_user, $db_pass);
@@ -42,8 +42,7 @@ class Database
 	/**
 	 * Array shortcut for prepared statement
 	 *
-	 * @param string $query
-	 * @param $params
+	 * @param mixed[] $params
 	 * @return bool|\PDOStatement
 	 */
 	public function queryArray(string $query, array $params)

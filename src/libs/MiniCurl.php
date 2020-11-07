@@ -11,7 +11,9 @@ class MiniCurl
 
 	const CONTENT_TYPE_APPLICATION_JSON = 'application/json';
 
+	/** @var string */
 	private $url;
+	/** @var array<int,mixed> $curlOptions */
 	private $curlOptions = [
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_HEADER => true,
@@ -20,13 +22,16 @@ class MiniCurl
 	];
 	/** @var string|false */
 	private $responseRaw;
-	/** @var array Array of response headers with lowercased keys */
+	/** @var array<string,string> Array of response headers with lowercased keys */
 	private $responseHeaders = [];
-	/** @var string|array */
+	/** @var string|array<mixed,mixed> */
 	private $responseBody;
 	/** @var bool Was request already executed? */
 	private $wasRequested = false;
 
+	/**
+	 * @param ?array<string,mixed> $getParams
+	 */
 	public function __construct(string $url, ?array $getParams = null)
 	{
 		if (is_array($getParams)) {
@@ -35,7 +40,10 @@ class MiniCurl
 		$this->url = $url;
 	}
 
-	/** @throws \Exception|\JsonException */
+	/**
+	 * @param array<int,mixed> $curlOptions
+	 * @throws \Exception|\JsonException
+	 */
 	public function run(array $curlOptions = []): self
 	{
 		$this->curlOptions = $this->curlOptions + $curlOptions;
@@ -58,6 +66,12 @@ class MiniCurl
 		return $this;
 	}
 
+	/**
+	 * @param string|array<mixed,mixed> $params POST data
+	 * Use string for raw body but dont forget set correct HTTP header, for example 'Content-Type: text/plain'
+	 * Use array for send as form, then default header is used. See https://ec.haxx.se/http/http-post#content-type
+	 * @param array<int,mixed> $curlOptions
+	 */
 	public function runPost($params = null, array $curlOptions = []): self
 	{
 		$curlOptions[CURLOPT_POST] = true;
@@ -66,7 +80,7 @@ class MiniCurl
 		return $this;
 	}
 
-	/** @return string|array */
+	/** @return string */
 	public function getResponseRaw()
 	{
 		if ($this->wasRequested === false) {
@@ -75,6 +89,7 @@ class MiniCurl
 		return $this->responseRaw;
 	}
 
+	/** @return array<mixed,mixed> */
 	public function getResponseHeaders(): array
 	{
 		if ($this->wasRequested === false) {
@@ -89,7 +104,7 @@ class MiniCurl
 		return $headers[mb_strtolower($name)] ?? null;
 	}
 
-	/** @return string|array */
+	/** @return string|array<mixed,mixed> */
 	public function getResponseBody()
 	{
 		if ($this->wasRequested === false) {
@@ -98,7 +113,11 @@ class MiniCurl
 		return $this->responseBody;
 	}
 
-	private function parseRawHeaders(string $headerStr)
+	/**
+	 * @param string $headerStr
+	 * @return array<string,string>
+	 */
+	private function parseRawHeaders(string $headerStr): array
 	{
 		$headers = explode("\r\n", $headerStr);
 		array_shift($headers);  // HTTP/1.1 200 OK

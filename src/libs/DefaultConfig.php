@@ -20,10 +20,10 @@ class DefaultConfig
 		'12.34.56.78',
 	];
 
-	// Put your email if you want to receive emails about errors and exceptions. See https://tracy.nette.org/guide for more info.
+	/** @var ?string Put your email if you want to receive emails about errors and exceptions. See https://tracy.nette.org/guide for more info. null to disable */
 	const TRACY_DEBUGGER_EMAIL = null;  // null to disable
 	// const TRACY_DEBUGGER_EMAIL = 'admin@your-domain.com';
 
-	// Telegram bot token generated from BotFather: https://t.me/BotFather
+	/** @var string Telegram bot token generated from BotFather: https://t.me/BotFather */
 	const TELEGRAM_BOT_TOKEN = '123456789:afsddfsggfergfgsadfdiswefqjdfbjfddt';
 }
